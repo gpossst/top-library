@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="new-book">New Book</button>
+    <div id="form-container">
+        <form action="." id="form">
+            <label for="title">Book Title</label>
+            <input required type="text" name="title" id="title">
+
+            <label for="author">Book Author</label>
+            <input required  type="text" name="author" id="author">
+
+            <label for="pages">Page Count</label>
+            <input required  type="number" name="pages" id="pages">
+
+            <label for="read">Book Completion</label>
+            <input type="radio" name="read" id="read" value="true">
+            <input type="radio" name="read" id="read" value="false">
+            
+            <div class="button-container">
+                <button id="submit-button" type="submit">Add Book</button>
+                <button id="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div>Radio buttons only return undefined and still dont have labels</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+body {
+    --primary-color: rgb(249, 249, 249);
+    --accent-color: #0175ff;
+    background-color: var(--primary-color);
+}
+
+#form {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    width: min(500px, 50%);
+    gap: 10px;
+    padding: 12px;
+    border: solid var(--accent-color) 2px;
+    border-radius: 10px;
+}
+
+#form > input {
+    border-radius: 50px;
+    border-color: var(--accent-color);
+    background-color: var(--primary-color);
+    height: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+#form > div > button {
+    background-color: var(--primary-color);
+    border: solid var(--accent-color) 2px;
+    border-radius: 30px;
+    width: 30%;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    translate: 0 25vh;
+    visibility: hidden;
+}
