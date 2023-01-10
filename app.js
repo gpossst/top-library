@@ -7,6 +7,7 @@ const submitBtn = document.querySelector('#submit-button');
 const inputs = document.querySelector('#form');
 
 // new book constructor
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -25,12 +26,53 @@ function Book(title, author, pages, read) {
 
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  myLibrary.push(new Book(title.value, author.value, pages.value, read.value));
+  if (title.value !== '' || author.value !== '' || pages.value !== '') {
+    if (document.querySelector('#read').checked) {
+      myLibrary.push(new Book(title.value, author.value, pages.value, true));
+    } else { myLibrary.push(new Book(title.value, author.value, pages.value, false)); }
+  }
   inputs.reset();
+  removeAllChildNodes(list);
+  popList();
   form.style.visibility = 'hidden';
 });
 
 // ------- Array Display Functionality -------
+
+const list = document.getElementById('list');
+
+const popList = () => {
+  for (let i = 0; i < myLibrary.length; i++) {
+    const popTitle = document.createElement('div');
+    popTitle.textContent = myLibrary[i].title;
+    list.appendChild(popTitle);
+    const popAuthor = document.createElement('div');
+    popAuthor.textContent = myLibrary[i].author;
+    list.appendChild(popAuthor);
+    const popPages = document.createElement('div');
+    popPages.textContent = myLibrary[i].pages;
+    list.appendChild(popPages);
+    const popRead = document.createElement('div');
+    popRead.textContent = myLibrary[i].read;
+    list.appendChild(popRead);
+    const statusBtn = document.createElement('button');
+    statusBtn.textContent = 'Complete';
+    statusBtn.addEventListener('click', (e) => readBook(i));
+    list.appendChild(statusBtn);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', (e) => deleteBook(i));
+    list.appendChild(deleteBtn);
+  }
+};
+
+// ------- Delete Child Nodes -------
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
 
 // ------- Popup Functionality -------
 
@@ -46,3 +88,17 @@ popupOpenBtn.addEventListener('click', () => {
 popupCloseBtn.addEventListener('click', () => {
   form.style.visibility = 'hidden';
 });
+
+// delete single book function
+const deleteBook = (bookNum) => {
+  myLibrary.splice(bookNum, 1);
+  removeAllChildNodes(list);
+  popList();
+};
+
+// book status read
+const readBook = (bookNum) => {
+  myLibrary[bookNum].read = true;
+  removeAllChildNodes(list);
+  popList();
+};
